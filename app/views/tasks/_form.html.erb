@@ -1,0 +1,30 @@
+<%= form_with(model:@task, local: true) do |form|%>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @task.errors.count %>Il y a des erreurs.</h2>
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="">
+    <%= form.label :task_name %>
+    <%= form.text_field :task_name %>
+  </div>
+  <div class="">
+    <%= form.label :Description %>
+    <%= form.text_field :description %>
+  </div>
+  <div class="">
+    <%= form.label :Start %>
+    <%= form.date_field :start %>
+  </div>
+  <div class="">
+    <%= form.label :Deadline %>
+    <%= form.date_field :deadline %>
+  </div>
+  <%= form.submit %>
+
+<% end %>

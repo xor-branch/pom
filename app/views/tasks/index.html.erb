@@ -1,0 +1,26 @@
+<div class=""><h3>Les Tâches</h3>
+    <table>
+      <tr>
+        <th>Numero</th>
+        <th>Nom de la Tache</th>
+        <th>Description</th>
+        <th>Start</th>
+        <th>End</th>
+      </tr>
+      <% @tasks.each do |task| %>
+      <tr>
+          <td><%=task.id %></td>
+          <td><%=link_to "#{task.task_name}", task %></td>
+          <td><%=task.description %></td>
+          <td><%=task.start %></td>
+          <td><%=task.deadline %></td>
+      </tr>
+    <% end %>
+    </table>
+
+</div>
+<div class="">
+  <button type="button" name="button">
+    <%= link_to "Nouvelle tâche", new_task_path %>
+  </button>
+</div>

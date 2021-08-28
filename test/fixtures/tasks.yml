@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_name: MyString
+  start: 2021-08-28
+  deadline: 2021-08-28
+
+two:
+  task_name: MyString
+  start: 2021-08-28
+  deadline: 2021-08-28
