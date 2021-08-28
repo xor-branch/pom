@@ -1,0 +1,7 @@
+<div class=""> Ma tâche</div>
+<h3><%=@task.task_name%></h3>
+<p><%=@task.description%></p>
+<p><%=@task.start%></p>
+<p><%=@task.deadline%></p>
+<p><%=link_to "modifier la tache", edit_task_path(@task) %></p>
+<p><%=link_to "supprimer la tache", @task, method: :delete %></p>
