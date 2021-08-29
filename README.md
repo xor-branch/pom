@@ -31,6 +31,11 @@ $ heroku stack:set heroku-18
 ### Compile the app and push it on heroku
 ```
 $ rails assets:precompile RAILS_ENV=production
+$ rm Gemfile.lock
+$ gem install bundler -v 2.2.11
+$ bundle exec bundle -v
+$ bundle update
+$ bundle lock --add-platform x86_64-linux
 $ git add -A
 $ git commit -m "message"
 $ git push heroku master
