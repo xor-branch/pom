@@ -1,30 +1,54 @@
+<div class="col-md-6">
 <%= form_with(model:@task, local: true) do |form|%>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @task.errors.count %>Il y a des erreurs.</h2>
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="">
-    <%= form.label :task_name %>
-    <%= form.text_field :task_name %>
+<% if @task.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @task.errors.count %>Il y a des erreurs.</h2>
+    <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
   </div>
-  <div class="">
-    <%= form.label :Description %>
-    <%= form.text_field :description %>
-  </div>
-  <div class="">
-    <%= form.label :Start %>
-    <%= form.date_field :start %>
-  </div>
-  <div class="">
-    <%= form.label :Deadline %>
-    <%= form.date_field :deadline %>
-  </div>
-  <%= form.submit %>
-
 <% end %>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <p>Fill in the data below.</p>
+                    <form class="requires-validation" novalidate>
+
+                        <div class="col-md-12">
+                          <%= form.text_field :task_name, class:"form-control form-control-new form-control-dark w-100",placeholder:"Task Name" %>
+                           <div class="valid-feedback">Username field is valid!</div>
+                           <div class="invalid-feedback">Username field cannot be blank!</div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <%= form.text_field :description, class:"form-control form-control-new form-control-dark w-100",placeholder:"description" %>
+                             <div class="valid-feedback">Email field is valid!</div>
+                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.date_field :start, class:"form-control form-control-new form-control-dark w-100",placeholder:"start" %>
+                             <div class="valid-feedback">Email field is valid!</div>
+                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.date_field :deadline, class:"form-control form-control-new form-control-dark w-100",placeholder:"deadline" %>
+                             <div class="valid-feedback">Email field is valid!</div>
+                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
+
+
+                        <div class="form-button mt-3">
+                            <%= form.submit%>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</div>

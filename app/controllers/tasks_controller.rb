@@ -1,10 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order(created_at: :DESC)
+    if params[:urgence]
+      @tasks = Task.all.order(deadline: :DESC)
+    else
+      @tasks = Task.all.order(created_at: :DESC)
+    end
   end
 
   def new
+    @tasks = Task.all.order(created_at: :DESC)
     @task = Task.new
   end
 
@@ -12,20 +17,24 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       flash[:success] = t('controller.task_create_success')
-      redirect_to tasks_path
+      redirect_to @task
     else
       render :new
     end
 
   end
   def show
+    @tasks = Task.all.order(created_at: :DESC)
   end
+
   def edit
+    @tasks = Task.all.order(created_at: :DESC)
   end
   def update
+
     if @task.update(task_params)
       flash[:success] = t('controller.task_update_success')
-      redirect_to tasks_path
+      redirect_to @task
     else
       render :edit
     end
