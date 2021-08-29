@@ -1,0 +1,24 @@
+fr:
+  controller:
+    task_create_success: Task successfully created !
+    task_update_success: Task successfully update !
+    task_destroy_success: Task successfully destroy !
+  activerecord:
+    errors:
+      messages:
+        record_invalid: L'enregistrement a échoué
+    models:
+      task: tâche
+      user: utilisateur
+      attributes:
+        blog:
+          title: Title
+          description: description
+          user:
+            title: Title
+            name: nom
+            email: email
+            current_password: mot de passe actuel
+            password: mot de passe
+            password_confirmation: Confirmer le mot de passe
+            remember_me: se rappeler de moi
