@@ -1,32 +1,34 @@
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse" style="">
+  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
       <div class="position-sticky pt-3">
-        <div class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-            All tasks
-          </a>
-        </div>
 
-        <hr>
-          Trier par Statut :
-          <%= link_to "not_started", tasks_path(not_started: "true") %>
-          | <%= link_to "doing", tasks_path(doing: "true") %>
-          | <%= link_to "done", tasks_path(done: "true") %>
-        <hr>
-        Trier par urgence :
-          <%= link_to "urgence", tasks_path(urgence: "true") %>
-        <hr>
         <ul class="nav flex-column">
-        <% @tasks.each do |task| %>
-          <li class="nav-item task_show nav-link flex-wrap" data-id="<%=task.id %>">
-              <%=link_to "#{task.task_name}", task%>
-              { <%= task.statut %> }
-              { deadline : <%= task.deadline %> }
-              { <%= task.priority %> }
-          </li>
-
-     <% end %>
-        </ul>
-        <button class=""><%=link_to "Nouvelle tâche", new_task_path , class:"menu__link"%></button>
+              <li class="nav-item">
+                              <a class="nav-link active" aria-current="page" href="#">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
+                                      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                  </svg>
+                                  All Ressources
+                              </a>
+                          </li>
+                          <% @tasks.each do |task| %>
+                          <li class="nav-item">
+                              <a class="nav-link" href='/tasks/<%=task.id%>'>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
+                                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                      <polyline points="13 2 13 9 20 9"></polyline>
+                          </svg>
+                      <%= task.task_name %>
+                      { <%= task.statut %> }
+                      { deadline : <%= task.deadline %> }
+                      { <%= task.priority %> }
+                    </a>
+                  </li>
+              <% end %>
+          </ul>
       </div>
-</nav>
+  </nav>
