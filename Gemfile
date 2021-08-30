@@ -14,8 +14,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
 
-
-
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
@@ -33,6 +31,7 @@ group :development do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'webpacker'
 end
 
 group :test do

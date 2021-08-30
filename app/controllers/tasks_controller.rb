@@ -3,6 +3,12 @@ class TasksController < ApplicationController
   def index
     if params[:urgence]
       @tasks = Task.all.order(deadline: :DESC)
+    elsif params[:not_started]
+      @tasks = Task.all.where(statut: :not_started)
+    elsif params[:doing]
+      @tasks = Task.all.where(statut: :doing)
+    elsif params[:done]
+      @tasks = Task.all.where(statut: :done)
     else
       @tasks = Task.all.order(created_at: :DESC)
     end
@@ -31,7 +37,6 @@ class TasksController < ApplicationController
     @tasks = Task.all.order(created_at: :DESC)
   end
   def update
-
     if @task.update(task_params)
       flash[:success] = t('controller.task_update_success')
       redirect_to @task
@@ -48,7 +53,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-     params.require(:task).permit(:task_name, :description, :start, :deadline)
+     params.require(:task).permit(:task_name, :description, :start, :deadline, :statut)
   end
   def set_task
     @task = Task.find(params[:id])

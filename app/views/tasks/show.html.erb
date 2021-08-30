@@ -17,13 +17,11 @@
         </div>
         <div class="task_details">
           <p class="info"><%=@task.description%></p>
-          <p><%=@task.start%></p>
-          <p><%=@task.deadline%></p>
+          <p>Started : <%=@task.start%></p>
+          <p> deadline : <%=@task.deadline%></p>
+          <p> Staut : <%=@task.statut%></p>
           <button type="button" name="button"><%=link_to "modifier la tache", edit_task_path(@task) %></button>
           <button type="button" name="button"><a href="#"><%=link_to "supprimer la tache", @task, method: :delete %></button>
-
-        </div>
-        <div class="">
 
         </div>
     </main>

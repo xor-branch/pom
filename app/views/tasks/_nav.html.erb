@@ -6,13 +6,22 @@
             All tasks
           </a>
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <%= link_to "trier", tasks_path(urgence: "true") %>
-        </button>
+
+        <hr>
+          Trier par Statut :
+          <%= link_to "not_started", tasks_path(not_started: "not_started") %>
+          | <%= link_to "doing", tasks_path(doing: "doing") %>
+          | <%= link_to "done", tasks_path(done: "done") %>
+        <hr>
+        Trier par urgence :
+          <%= link_to "urgence", tasks_path(urgence: "true") %>
+        <hr>
         <ul class="nav flex-column">
         <% @tasks.each do |task| %>
-          <li class="nav-item task_show nav-link" data-id="<%=task.id %>">
+          <li class="nav-item task_show nav-link flex-wrap" data-id="<%=task.id %>">
               <%=link_to "#{task.task_name}", task%>
+              { <%= task.statut %> }
+              { deadline : <%= task.deadline %> }
           </li>
 
      <% end %>

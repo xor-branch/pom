@@ -39,6 +39,11 @@
                              <div class="valid-feedback">Email field is valid!</div>
                              <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
+                        <div class="col-md-12">
+                             Statut : <%= form.select(:statut, {not_started: 'not_started', doing: 'doing', done: 'done'})%>
+                             <div class="valid-feedback">Email field is valid!</div>
+                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                        </div>
 
 
                         <div class="form-button mt-3">

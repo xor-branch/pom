@@ -12,6 +12,7 @@
 //
 //= require includes/task
 //= require rails-ujs
+//= require popper
 //= require activestorage
 //= require turbolinks
 //= require jquery/dist/jquery.js

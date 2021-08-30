@@ -3,4 +3,8 @@ class Task < ApplicationRecord
   validates :description, presence:true, null:false
   validates :start, presence:true, null:false
   validates :deadline, presence:true, null:false
+
+  enum statut: %i[not_started doing done]
+
+
 end
