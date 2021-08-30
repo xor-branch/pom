@@ -19,7 +19,8 @@
           <p class="info"><%=@task.description%></p>
           <p>Started : <%=@task.start%></p>
           <p> deadline : <%=@task.deadline%></p>
-          <p> Staut : <%=@task.statut%></p>
+          <p> Statut : <%=@task.statut%></p>
+          <p> Priority : <%=@task.priority%></p>
           <button type="button" name="button"><%=link_to "modifier la tache", edit_task_path(@task) %></button>
           <button type="button" name="button"><a href="#"><%=link_to "supprimer la tache", @task, method: :delete %></button>
 

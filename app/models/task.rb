@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   validates :deadline, presence:true, null:false
 
   enum statut: %i[not_started doing done]
+  enum priority: %i[low medium high]
 
 
 end

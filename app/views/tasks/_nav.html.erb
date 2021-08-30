@@ -9,9 +9,9 @@
 
         <hr>
           Trier par Statut :
-          <%= link_to "not_started", tasks_path(not_started: "not_started") %>
-          | <%= link_to "doing", tasks_path(doing: "doing") %>
-          | <%= link_to "done", tasks_path(done: "done") %>
+          <%= link_to "not_started", tasks_path(not_started: "true") %>
+          | <%= link_to "doing", tasks_path(doing: "true") %>
+          | <%= link_to "done", tasks_path(done: "true") %>
         <hr>
         Trier par urgence :
           <%= link_to "urgence", tasks_path(urgence: "true") %>
@@ -22,6 +22,7 @@
               <%=link_to "#{task.task_name}", task%>
               { <%= task.statut %> }
               { deadline : <%= task.deadline %> }
+              { <%= task.priority %> }
           </li>
 
      <% end %>

@@ -20,29 +20,20 @@
 
                         <div class="col-md-12">
                           <%= form.text_field :task_name, class:"form-control form-control-new form-control-dark w-100",placeholder:"Task Name" %>
-                           <div class="valid-feedback">Username field is valid!</div>
-                           <div class="invalid-feedback">Username field cannot be blank!</div>
                         </div>
 
                         <div class="col-md-12">
                             <%= form.text_field :description, class:"form-control form-control-new form-control-dark w-100",placeholder:"description" %>
-                             <div class="valid-feedback">Email field is valid!</div>
-                             <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
                         <div class="col-md-12">
                             <%= form.date_field :start, class:"form-control form-control-new form-control-dark w-100",placeholder:"start" %>
-                             <div class="valid-feedback">Email field is valid!</div>
-                             <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
                         <div class="col-md-12">
                             <%= form.date_field :deadline, class:"form-control form-control-new form-control-dark w-100",placeholder:"deadline" %>
-                             <div class="valid-feedback">Email field is valid!</div>
-                             <div class="invalid-feedback">Email field cannot be blank!</div>
                         </div>
                         <div class="col-md-12">
-                             Statut : <%= form.select(:statut, {not_started: 'not_started', doing: 'doing', done: 'done'})%>
-                             <div class="valid-feedback">Email field is valid!</div>
-                             <div class="invalid-feedback">Email field cannot be blank!</div>
+                          Statut : <%= form.select(:statut, {not_started: 'not_started', doing: 'doing', done: 'done'})%>
+                          Priority : <%= form.select(:priority, {low: 'low', medium: 'medium', high: 'high'})%>
                         </div>
 
 
