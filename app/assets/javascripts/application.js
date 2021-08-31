@@ -12,20 +12,15 @@
 //
 //= require includes/task
 //= require rails-ujs
+//= require popper
 //= require activestorage
 //= require turbolinks
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
 
-$(document).ready(function() {
-    $(".task_show").on("click", function(){
-      var task_id = $(this).data("id");
 
-    Rails.ajax({
-        url: "/tasks/" +task_id,
-        type: "get",
-        dataType: "html"
-      });
+$(document).ready(function() {
+    $(".nav-link").on("click", function(){
     });
 });
