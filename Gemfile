@@ -31,7 +31,7 @@ group :development do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
-  gem 'webpacker'
+  #gem 'webpacker'
 end
 
 group :test do
