@@ -1,21 +1,4 @@
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-<div class="search">
-  <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
-    <%= f.text_field :task_name, class:"form-control form-control-dark w-100", placeholder:"search by task name" %>
-
-    <%= f.select :statut, [ ["not_started", 0 ], ["doing", 1 ], ["done", 2 ] ]%>
-    <%= f.submit'search',:class=>"btn btn-dark" %>
-  <% end %>
-  <hr>
-  Trier par priorité :
-  <%= link_to "low", tasks_path(low: "true") %>
-  | <%= link_to "medium", tasks_path(medium: "true") %>
-  | <%= link_to "high", tasks_path(high: "true") %>
-<hr>
-Trier par urgence :
-  <%= link_to "urgence", tasks_path(urgence: "true") %>
-<hr>
-</div>
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
           <li class="nav-item">
