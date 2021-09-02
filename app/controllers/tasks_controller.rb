@@ -49,7 +49,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task.steps.new
+    @task.steps.build
   end
 
   def update
@@ -59,6 +59,7 @@ class TasksController < ApplicationController
     else
       render :edit
     end
+
   end
 
   def destroy
