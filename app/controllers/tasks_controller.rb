@@ -2,22 +2,22 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     if params[:urgence]
-      @tasks = Task.all.order(deadline: :DESC)
+      @tasks = Task.all.order(deadline: :DESC).page params[:page]
     elsif params[:low]
-      @tasks = Task.all.where(priority: :low)
+      @tasks = Task.all.where(priority: :low).page params[:page]
     elsif params[:medium]
-      @tasks = Task.all.where(priority: :medium)
+      @tasks = Task.all.where(priority: :medium).page params[:page]
     elsif params[:high]
-      @tasks = Task.all.where(priority: :high)
+      @tasks = Task.all.where(priority: :high).page params[:page]
     elsif params[:task_name] && params[:statut]
       if params[:task_name]==''
-        @tasks = Task.all.where(statut:params[:statut])
+        @tasks = Task.all.where(statut:params[:statut]).page params[:page]
       else
         #@tasks = Task.all.where(task_name: params[:task_name])
         @tasks = Task.all.where("task_name LIKE ?
                                 or description LIKE ?",
                                 "%#{params[:task_name]}%",
-                                "%#{params[:task_name]}%")
+                                "%#{params[:task_name]}%").page params[:page]
 
       end
     else
