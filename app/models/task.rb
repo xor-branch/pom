@@ -7,5 +7,6 @@ class Task < ApplicationRecord
   enum statut: %i[not_started doing done]
   enum priority: %i[low medium high]
 
+  paginates_per 7
 
 end

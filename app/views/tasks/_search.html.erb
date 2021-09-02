@@ -1,0 +1,19 @@
+<div class="search">
+  <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
+    <%= f.label :search %>
+    <%= f.text_field :task_name, class:"form-control form-control-dark w-100", placeholder:"search by task name" %>
+    <%= f.label :statut %>
+    <%= f.select :statut, [ ["not_started", 0 ], ["doing", 1 ], ["done", 2 ] ]%>
+    <%= f.submit'search',:class=>"btn btn-dark" %>
+  <% end %>
+  <hr>
+  Trier par priorité :
+  <%= link_to "low", tasks_path(low: "true") %>
+  | <%= link_to "medium", tasks_path(medium: "true") %>
+  | <%= link_to "high", tasks_path(high: "true") %>
+  <hr>
+  Trier par urgence :
+    <%= link_to "urgence", tasks_path(urgence: "true") %>
+  <hr>
+
+</div>

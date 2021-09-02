@@ -1,7 +1,28 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-      @tasks = Task.all.order(created_at: :DESC)
+    if params[:urgence]
+      @tasks = Task.all.order(deadline: :DESC)
+    elsif params[:low]
+      @tasks = Task.all.where(priority: :low)
+    elsif params[:medium]
+      @tasks = Task.all.where(priority: :medium)
+    elsif params[:high]
+      @tasks = Task.all.where(priority: :high)
+    elsif params[:task_name] && params[:statut]
+      if params[:task_name]==''
+        @tasks = Task.all.where(statut:params[:statut])
+      else
+        #@tasks = Task.all.where(task_name: params[:task_name])
+        @tasks = Task.all.where("task_name LIKE ?
+                                or description LIKE ?",
+                                "%#{params[:task_name]}%",
+                                "%#{params[:task_name]}%")
+
+      end
+    else
+      @tasks = Task.all.order(created_at: :DESC).page params[:page]
+    end
   end
 
   def new
