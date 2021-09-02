@@ -21,7 +21,7 @@ class TasksController < ApplicationController
 
       end
     else
-      @tasks = Task.all.order(created_at: :DESC)
+      @tasks = Task.all.order(created_at: :DESC).page params[:page]
     end
   end
 
