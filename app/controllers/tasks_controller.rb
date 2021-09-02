@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
     if params[:urgence]
       @tasks = Task.all.order(deadline: :DESC).page params[:page]
@@ -26,8 +27,8 @@ class TasksController < ApplicationController
   end
 
   def new
-    @tasks = Task.all.order(created_at: :DESC)
     @task = Task.new
+    @task.steps.new
   end
 
   def create
@@ -38,19 +39,23 @@ class TasksController < ApplicationController
     else
       render :new
     end
-
   end
+
   def show
-    @tasks = Task.all.order(created_at: :DESC)
+  end
+  def step
+    @step = Step.find(params[:id])
+    @steps = @step.task.steps
   end
 
   def edit
-    @tasks = Task.all.order(created_at: :DESC)
+    @task.steps.new
   end
+
   def update
     if @task.update(task_params)
       flash[:success] = t('controller.task_update_success')
-      redirect_to @task
+      redirect_to edit_task_path(@task)
     else
       render :edit
     end
@@ -64,9 +69,16 @@ class TasksController < ApplicationController
 
   private
   def task_params
-     params.require(:task).permit(:task_name, :description, :start, :deadline, :statut, :priority)
+     params.require(:task).permit(:task_name,
+                                  :description,
+                                  :start,
+                                  :deadline,
+                                  :statut,
+                                  :priority,
+                                  steps_attributes: {} )
   end
   def set_task
     @task = Task.find(params[:id])
+    @steps = @task.steps
   end
 end

@@ -1,5 +1,4 @@
-<%= render partial:'tasks/task_nav'%>
-
+<%= render partial:'tasks/step_nav'%>
 <section class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
   <a class="nav-link " aria-current="page" href="/tasks">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -11,7 +10,7 @@
       All tasks
   </a>
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h6 class="h2"><%=@task.task_name%></h6>
+          <h6 class="h2"><%=@step.name%></h6>
               <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group me-2">
                     <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -24,28 +23,6 @@
                 </div>
         </div>
         <div class="task_details">
-          <p class="info"><%=@task.description%></p>
-          <p>Started : <%=@task.start%></p>
-          <p> deadline : <%=@task.deadline%></p>
-          <p> Statut : <%=@task.statut%></p>
-          <p> Priority : <%=@task.priority%></p>
-
-          <hr>
-          <% if @steps.present? %>
-            <% @steps.each do |step| %>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
-                          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                          <polyline points="13 2 13 9 20 9"></polyline>
-              </svg>
-              <%= link_to "#{step.name}", step %>
-            </p>
-            <% end %>
-          <% end %>
-          <button type="button" name="button"><%=link_to "modifier la tache", edit_task_path(@task) %></button>
-          <button type="button" name="button"><a href="#"><%=link_to "supprimer la tache", @task, method: :delete %></button>
-
+          <p class="info"><%=@step.content%></p>
         </div>
   </section>

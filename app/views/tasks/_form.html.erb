@@ -15,7 +15,7 @@
         <div class="form-holder">
             <div class="form-content">
                 <div class="form-items">
-                    <p>Fill in the data below.</p>
+                    <p>Les specification du projet : </p>
                     <form class="requires-validation" novalidate>
 
                         <div class="col-md-12">
@@ -35,7 +35,20 @@
                           Statut : <%= form.select(:statut, {not_started: 'not_started', doing: 'doing', done: 'done'})%>
                           Priority : <%= form.select(:priority, {low: 'low', medium: 'medium', high: 'high'})%>
                         </div>
+                        <hr>
+                        <div class="col-md-12">
+                          <p> Les étapes de cette tache :</p>
 
+
+                            <%= form.fields_for :steps do |r| %>
+                            <%= r.text_field :name, class:"form-control form-control-dark w-100", placeholder:" step title" %>
+                            <%= r.text_field :content, class:"form-control form-control-dark w-100", placeholder:"click add details"  %>
+                            <%= r.date_field :deadline, class:"form-control form-control-dark w-100", placeholder:"deadline"  %>
+                            <hr>
+                            <% end %>
+
+
+                        </div>
 
                         <div class="form-button mt-3">
                             <%= form.submit%>

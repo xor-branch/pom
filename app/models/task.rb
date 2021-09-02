@@ -9,4 +9,6 @@ class Task < ApplicationRecord
 
   paginates_per 7
 
+  has_many :steps, dependent: :destroy
+  accepts_nested_attributes_for :steps, reject_if: :all_blank
 end

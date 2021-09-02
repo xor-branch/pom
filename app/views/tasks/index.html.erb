@@ -1,3 +1,4 @@
+<%= render partial:'tasks/nav'%>
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
   <div class="position-sticky pt-3">
     <div class="container-fluid">
@@ -16,7 +17,7 @@
                           </li>
                           <% @tasks.each do |task| %>
                           <li class="nav-item">
-                              <a class="nav-link" href='/tasks/<%=task.id%>'>
+                              <a class="nav-link" href='/tasks/<%=task.id%>/edit'>
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                       stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
