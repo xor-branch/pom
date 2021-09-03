@@ -1,0 +1,27 @@
+<div class="col-md-6">
+<%= form_with(scope: :session, url: sessions_path, local: true) do |form|%>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <p> CONNEXION </p>
+                    <form class="requires-validation" novalidate>
+                        <div class="col-md-12">
+                            <%= form.email_field :email, class:"form-control form-control-new form-control-dark w-100",placeholder:"Email" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.password_field :password, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your password" %>
+                        </div>
+                      
+                        <div class="form-button mt-3">
+                            <%= form.submit%>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</div>

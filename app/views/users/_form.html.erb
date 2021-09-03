@@ -1,0 +1,51 @@
+<div class="col-md-6">
+<%= form_with(model:@user, local: true) do |form|%>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @user.errors.count %>Il y a des erreurs.</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <p> VOTRE PROFIL </p>
+                    <form class="requires-validation" novalidate>
+
+                        <div class="col-md-12">
+                          <%= form.text_field :name, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your Name" %>
+                        </div>
+
+                        <div class="col-md-12">
+                            <%= form.email_field :email, class:"form-control form-control-new form-control-dark w-100",placeholder:"Email" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.text_field :telephone, class:"form-control form-control-new form-control-dark w-100",placeholder:"Telephone" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.text_field :bio, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your bio" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.password_field :password, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your password" %>
+                        </div>
+                        <div class="col-md-12">
+                            <%= form.password_field :password_confirmation, class:"form-control form-control-new form-control-dark w-100",placeholder:"Confirme your password" %>
+                        </div>
+
+                        <div class="form-button mt-3">
+                            <%= form.submit%>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</div>
