@@ -5,6 +5,28 @@ class UsersController < ApplicationController
   def index
   end
   def show
+    if params[:urgence]
+      @tasks = current_user.tasks.order(deadline: :DESC).page params[:page]
+    elsif params[:low]
+      @tasks = current_user.tasks.where(priority: :low).page params[:page]
+    elsif params[:medium]
+      @tasks = current_user.tasks.where(priority: :medium).page params[:page]
+    elsif params[:high]
+      @tasks = current_user.tasks.where(priority: :high).page params[:page]
+    elsif params[:task_name] && params[:statut]
+      if params[:task_name]==''
+        @tasks = current_user.tasks.where(statut:params[:statut]).page params[:page]
+      else
+        #@tasks = Task.all.where(task_name: params[:task_name])
+        @tasks = current_user.tasks.where("task_name LIKE ?
+                                or description LIKE ?",
+                                "%#{params[:task_name]}%",
+                                "%#{params[:task_name]}%").page params[:page]
+
+      end
+    else
+      @tasks = current_user.tasks.order(created_at: :DESC).page params[:page]
+    end
   end
 
   def new
@@ -15,7 +37,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = t('controller.user.create_success')
 
-      redirect_to edit_path(current_user.id)
+      redirect_to new_session_path
     else
       render :new
     end
