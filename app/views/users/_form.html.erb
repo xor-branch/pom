@@ -29,8 +29,10 @@
                             <%= form.text_field :telephone, class:"form-control form-control-new form-control-dark w-100",placeholder:"Telephone" %>
                         </div>
                         <div class="col-md-12">
-                            <%= form.text_field :bio, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your bio" %>
+                            <%= form.text_area :bio, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your bio", style:"height: 300px;"%>
                         </div>
+                        <p class="info"> Pour mettre a jour votre profile,
+                          Veuillez confirmer qu'il s'agit de vous-même </p>
                         <div class="col-md-12">
                             <%= form.password_field :password, class:"form-control form-control-new form-control-dark w-100",placeholder:"Your password" %>
                         </div>
@@ -39,7 +41,7 @@
                         </div>
 
                         <div class="form-button mt-3">
-                            <%= form.submit%>
+                            <%= form.submit %>
                         </div>
                     </form>
                 </div>

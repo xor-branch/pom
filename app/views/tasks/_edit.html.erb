@@ -23,8 +23,10 @@
                         </div>
 
                         <div class="col-md-12">
-                            <%= form.text_field :description, class:"form-control form-control-new form-control-dark w-100",placeholder:"description" %>
+                            Votre Motivation
+                            <%= form.text_area:description, class:"form-control form-control-new form-control-dark w-100",placeholder:"description", style:"height:150px;" %>
                         </div>
+                        <br>
                         <div class="col-md-12">
                             <%= form.date_field :start, class:"form-control form-control-new form-control-dark w-100",placeholder:"start" %>
                         </div>
@@ -37,13 +39,12 @@
                         </div>
                         <hr>
                         <div class="col-md-12">
-                          <p> Les étapes de cette tache :</p>
-
-
+                          <p> Ajouter une étapes de cette tache :</p>
                             <%= form.fields_for :steps do |r| %>
                             <%= r.text_field :name, class:"form-control form-control-dark w-100", placeholder:" step title" %>
-                            <%= r.text_field :content, class:"form-control form-control-dark w-100", placeholder:"click add details"  %>
-                            <%= r.date_field :deadline, class:"form-control form-control-dark w-100", placeholder:"deadline"  %>
+                            deadline :<%= r.date_field :deadline, class:"form-control form-control-dark w-100", placeholder:"deadline"  %>
+
+                            Prendre un note :<%= r.text_area :content, class:"form-control form-control-dark w-100", placeholder:"click add details", style:"height:200px;"  %>
                             <hr>
                             <% end %>
 
@@ -51,7 +52,7 @@
                         </div>
 
                         <div class="form-button mt-3">
-                            <%= form.submit%>
+                            <%= form.submit  "Mettre à jour le projet "%>
                         </div>
                     </form>
                 </div>

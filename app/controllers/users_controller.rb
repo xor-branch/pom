@@ -14,19 +14,19 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = t('controller.user.create_success')
-      redirect_to user_path(@user)
+
+      redirect_to edit_path(current_user.id)
     else
       render :new
     end
   end
 
   def edit
-    @user = User.new
   end
   def update
-    if @user.update
+    if @user.update(user_params)
       flash[:success] = t('controller.user.update_success')
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user.id)
     else
       render :edit
     end

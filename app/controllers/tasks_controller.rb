@@ -3,36 +3,38 @@ class TasksController < ApplicationController
 
   def index
     if params[:urgence]
-      @tasks = Task.all.order(deadline: :DESC).page params[:page]
+      @tasks = current_user.tasks.order(deadline: :DESC).page params[:page]
     elsif params[:low]
-      @tasks = Task.all.where(priority: :low).page params[:page]
+      @tasks = current_user.tasks.where(priority: :low).page params[:page]
     elsif params[:medium]
-      @tasks = Task.all.where(priority: :medium).page params[:page]
+      @tasks = current_user.tasks.where(priority: :medium).page params[:page]
     elsif params[:high]
-      @tasks = Task.all.where(priority: :high).page params[:page]
+      @tasks = current_user.tasks.where(priority: :high).page params[:page]
     elsif params[:task_name] && params[:statut]
       if params[:task_name]==''
-        @tasks = Task.all.where(statut:params[:statut]).page params[:page]
+        @tasks = current_user.tasks.where(statut:params[:statut]).page params[:page]
       else
         #@tasks = Task.all.where(task_name: params[:task_name])
-        @tasks = Task.all.where("task_name LIKE ?
+        @tasks = current_user.tasks.where("task_name LIKE ?
                                 or description LIKE ?",
                                 "%#{params[:task_name]}%",
                                 "%#{params[:task_name]}%").page params[:page]
 
       end
     else
-      @tasks = Task.all.order(created_at: :DESC).page params[:page]
+      @tasks = current_user.tasks.order(created_at: :DESC).page params[:page]
     end
   end
 
   def new
+    @tasks = current_user.tasks
     @task = Task.new
     @task.steps.new
   end
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       flash[:success] = t('controller.task.create_success')
       redirect_to @task
@@ -49,7 +51,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task.steps.build
+    @task.steps.new
   end
 
   def update

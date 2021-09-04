@@ -5,15 +5,11 @@
     <%= f.label :statut %>
     <%= f.select :statut, [ ["not_started", 0 ], ["doing", 1 ], ["done", 2 ] ]%>
     <%= f.submit'search',:class=>"btn btn-dark" %>
+     | Trier par
+      <%= link_to "low", tasks_path(low: "true") %>
+     | <%= link_to "medium", tasks_path(medium: "true") %>
+     | <%= link_to "high", tasks_path(high: "true") %>
+     | <%= link_to "urgence", tasks_path(urgence: "true") %>
   <% end %>
   <hr>
-  Trier par priorité :
-  <%= link_to "low", tasks_path(low: "true") %>
-  | <%= link_to "medium", tasks_path(medium: "true") %>
-  | <%= link_to "high", tasks_path(high: "true") %>
-  <hr>
-  Trier par urgence :
-    <%= link_to "urgence", tasks_path(urgence: "true") %>
-  <hr>
-
 </div>
