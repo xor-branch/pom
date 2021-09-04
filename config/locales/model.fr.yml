@@ -1,0 +1,17 @@
+fr:
+ activerecord:
+ models:
+ task: Task
+ user: utilisateur
+ attributes:
+ task:
+ task_name: name
+ content: contenu
+ user:
+ name: name
+ email: email
+ bio: bio
+ telephone: telephone
+ current_password: mot de passe actuel
+ password: mot de passe
+ password_confirmation: Confirmation du mot de pass
