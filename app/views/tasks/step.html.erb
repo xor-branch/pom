@@ -5,7 +5,7 @@
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                      <a class="nav-link active" aria-current="page" href="/tasks">
+                      <a class="nav-link active" aria-current="page" href="/users/<%= current_user.id %>">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                               stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
@@ -19,3 +19,11 @@
                 </div>
         </div>
         </section>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="position-sticky pt-3">
+            <div class="container-fluid">
+              <p class="info"> <%= @step.deadline %></p>
+              <p class="info"> <%= @step.content %></p>
+              </div>
+            </div>
+        </main>

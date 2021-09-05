@@ -1,15 +1,15 @@
 <div class="search">
-  <%= form_with(url: tasks_path, method: :get, local: true) do |f| %>
+  <%= form_with(url: user_path(current_user.id), method: :get, local: true) do |f| %>
     <%= f.label :search %>
     <%= f.text_field :task_name, class:"form-control form-control-dark w-100", placeholder:"search by task name" %>
     <%= f.label :statut %>
     <%= f.select :statut, [ ["not_started", 0 ], ["doing", 1 ], ["done", 2 ] ]%>
     <%= f.submit'search',:class=>"btn btn-dark" %>
      | Trier par
-      <%= link_to "low", tasks_path(low: "true") %>
-     | <%= link_to "medium", tasks_path(medium: "true") %>
-     | <%= link_to "high", tasks_path(high: "true") %>
-     | <%= link_to "urgence", tasks_path(urgence: "true") %>
+      <%= link_to "low", user_path({id: current_user.id, low: "true"}) %>
+     | <%= link_to "medium", user_path({id: current_user.id, medium: "true"}) %>
+     | <%= link_to "high", user_path({id: current_user.id, high: "true"}) %>
+     | <%= link_to "urgence", user_path({id: current_user.id,urgence: "true"}) %>
   <% end %>
   <hr>
 </div>
