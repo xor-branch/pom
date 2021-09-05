@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to edit_user_path(user.id)
+      if current_user.mentor?
+        redirect_to mentor_user_path(user.id)
+      else
+        redirect_to user_path(user.id)
+      end
     else
       flash[:danger] = 'Connection échouée !'
       render :new
