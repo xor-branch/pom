@@ -1,0 +1,20 @@
+<p> Cochez pour ajouter une ressource:</p>
+    <table class="table  text-light">
+      <thead>
+        <tr>
+          <th colspan="2">#</th>
+          <th scope="col">Sources</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sources.all.each do |source| %>
+        <tr>
+          <th scope="row"><%= source.id %></th>
+          <td class=""><%= source.title %></td>
+          <td class="">
+            <%=link_to "ajouter", my_route_path(source_id: source.id), method: :post %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

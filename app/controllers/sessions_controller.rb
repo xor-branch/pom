@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       if current_user.mentor?
-        redirect_to mentor_user_path(user.id)
+        redirect_to mentor_path(user.id)
       else
         redirect_to user_path(user.id)
       end

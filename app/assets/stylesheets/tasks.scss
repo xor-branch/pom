@@ -1,12 +1,4 @@
-/* General Blueprint Style */
-@font-face {
-    font-family: 'bpicons';
-    font-weight: normal;
-    font-style: normal; src: url("../fonts/bpicons/bpicons.eot");
-    src: url("../fonts/bpicons/bpicons.eot?#iefix") format("embedded-opentype"), url("../fonts/bpicons/bpicons.woff") format("woff"), url("../fonts/bpicons/bpicons.ttf") format("truetype"), url("../fonts/bpicons/bpicons.svg#bpicons") format("svg"); }
-
-
-    body {
+  body {
         font-family: 'Avenir Next',
         Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
         margin: 0; color: #cecece;

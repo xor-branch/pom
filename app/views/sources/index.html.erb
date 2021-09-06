@@ -1,0 +1,48 @@
+<%= render partial:'users/nav'%>
+<section class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h6 class="h2">
+            <% if current_user.name.present? %>
+              <%= current_user.name %>
+            <% else %>
+              <%= current_user.email %>
+            <% end %>
+          </h6>
+          <%= render "users/logout_button"%>
+</section>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="position-sticky pt-3">
+    <div class="container-fluid">
+      <div class="col-md-12">
+        <p> Cochez pour ajouter une ressource:</p>
+        <%= form_with(model:@task, url:"/sourcing/#{@task.id}", method: "patch") do |form| %>
+            <table class="table text-light">
+              <thead>
+                <tr>
+                  <th colspan="2">#</th>
+                  <th scope="col">Sources</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="d-none">
+                  <td><%= @task.task_name%></td>
+                  <td><%= @task.description%></td>
+                  <td><%= @task.deadline%></td>
+                  <td><%= @task.statut%></td>
+                  <td><%= @task.deadline%></td>
+                </tr>
+                <% @sources.all.each do |source| %>
+                <tr>
+                  <th scope="row"><%= source.id %></th>
+                  <td class=""><%= source.title %></td>
+                  <td class=""><%= form.check_box :source_ids, { multiple: true, checked: source[:checked], include_hidden: false }, source[:id] %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= form.submit :class=>"btn btn-dark"%>
+         <% end %>
+      </div>
+    </div>
+    </div>
+</main>

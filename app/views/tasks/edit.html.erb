@@ -6,6 +6,17 @@
           <h6 class="h2"><%=@task.task_name%></h6>
               <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group me-2">
+                    <% if current_user.mentor?  %>
+                    <a class="nav-link active" aria-current="page" href="/mentor/<%=current_user.id %>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        All Projects
+                    </a>
+                    <% else %>
                     <a class="nav-link active" aria-current="page" href="/users/<%=current_user.id %>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -15,10 +26,44 @@
                         </svg>
                         All Projects
                     </a>
+                      <% end %>
                   </div>
                 </div>
         </div>
-        <p><%=render "edit"%></p>
+        <% if request.path == edit_task_path(@task.id) %>
+          <p><%=render "edit"%></p>
+        <% elsif request.path == sourcing_path %>
+        <div class="col-md-6">
+        <%= form_with(model:@task, local: true) do |form|%>
+            <div class="form-body">
+                <div class="row">
+                    <div class="form-holder">
+                        <div class="form-content">
+                            <div class="form-items">
+                                <p>AJOUTER DES RESSOURCE </p>
+                                <form class="requires-validation" novalidate>
+
+                                    <div class="col-md-12">
+                                      <% current_user.sources.all.each do |source| %>
+                                        <%= form.check_box :source_ids, { multiple: true, checked: source[:checked], disabled: source[:disabled], include_hidden: false }, source[:id] %>
+                                        <label><%= source.content %></label>
+                                      <% end %>
+                                    </div>
+                                    <hr>
+                                    <div class="form-button mt-3">
+                                        <%= form.submit  "Ajouter les ressources "%>
+                                        <%= link_to 'Annuler', 'javascript:history.back()'%>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+        </div>
+        <% end %>
     </main>
   </div>
 </div>

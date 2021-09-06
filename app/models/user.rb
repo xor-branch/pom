@@ -9,4 +9,6 @@ class User < ApplicationRecord
   before_validation {email.downcase!}
   has_secure_password
   has_many :tasks
+
+  has_many :sources, dependent: :destroy
 end

@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_121253) do
+ActiveRecord::Schema.define(version: 2021_09_05_200631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "sources", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "title"
+    t.index ["user_id"], name: "index_sources_on_user_id"
+  end
+
+  create_table "sourcings", force: :cascade do |t|
+    t.bigint "task_id"
+    t.bigint "source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_id"], name: "index_sourcings_on_source_id"
+    t.index ["task_id"], name: "index_sourcings_on_task_id"
+  end
 
   create_table "steps", force: :cascade do |t|
     t.string "name"
@@ -51,6 +69,9 @@ ActiveRecord::Schema.define(version: 2021_09_05_121253) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "sources", "users"
+  add_foreign_key "sourcings", "sources"
+  add_foreign_key "sourcings", "tasks"
   add_foreign_key "steps", "tasks"
   add_foreign_key "tasks", "users"
 end

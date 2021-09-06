@@ -1,0 +1,36 @@
+<div class="col-md-12">
+<%= form_with(model:@source, local: true) do |form|%>
+<% if @source.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @source.errors.count %>Il y a des erreurs.</h2>
+    <ul>
+    <% @source.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="form-body">
+    <div class="row">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <p> ADD SOURCE </p>
+                    <form class="requires-validation" novalidate>
+                      <div class="col-md-12">
+                        <%= form.text_field :title, class:"form-control form-control-new form-control-dark w-100",placeholder:"Title" %>
+                      </div>
+                        <div class="col-md-12">
+                          <%= form.text_field :content, class:"form-control form-control-dark w-100",placeholder:"Edit", style:"height:150px;" %>
+                        </div>
+                        <div class="form-button mt-3">
+                            <%= form.submit %>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+</div>

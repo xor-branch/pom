@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :user_check, only: [:edit, :update, :destroy]
 
   def index
     if params[:urgence]
@@ -44,6 +45,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    @sourcing = Sourcing.find_by(task_id: params[:id])
+
+    @sources = Source.all
   end
   def step
     @step = Step.find(params[:id])
@@ -57,7 +61,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       flash[:success] = t('controller.task.update_success')
-      redirect_to edit_task_path(@task)
+      redirect_to task_path(@task)
     else
       render :edit
     end
@@ -69,7 +73,18 @@ class TasksController < ApplicationController
         flash[:danger] = t('controller.task.destroy_success')
         redirect_to tasks_path
   end
+  #### SOURCING ######
 
+  def source
+    source = Sourcing.create(source_id: params[:source_id], task_id: params[:id] )
+    redirect_to task_path(params[:id])
+  end
+
+  def destroy_source
+    @sourcing = Sourcing.find_by(task_id: params[:id], source_id: params[:source_id])
+    @sourcing.destroy
+    redirect_to task_path(params[:id])
+  end
   private
   def task_params
      params.require(:task).permit(:task_name,
@@ -78,7 +93,11 @@ class TasksController < ApplicationController
                                   :deadline,
                                   :statut,
                                   :priority,
+                                  {source_ids:[]},
                                   steps_attributes: {} )
+  end
+  def source_params
+     params.require(:sourcing).permit(:task_id, :source_id)
   end
   def set_task
     @task = Task.find(params[:id])

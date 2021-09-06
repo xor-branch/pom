@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  root "tasks#index"
+  root "homes#index"
+
+  #root "tasks#index"
   get 'sessions/new'
   resources :tasks
   resources :users
-  
-  namespace :mentor do
-    resources :users
-  end
-
+  resources :sources
   resources :sessions, only: [:new, :create, :destroy]
   get 'step/:id', to: "tasks#step", as: :step
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'mentor/:id', to: "users#mentor", as: :mentor
+  get 'tasks/:id/sourcing', to:"sources#index", as: :sourcing
+  post 'tasks/sourcing/:id', to:"tasks#source", as: :my_route
+  delete 'tasks/sourcing/:id', to:"tasks#destroy_source", as: :my_route2
+  #post "/tasks/:id/:ph_id" => "tasks#source", as: :my_route, id: /\d{7}/, ph_id: /\d{7}/
 end

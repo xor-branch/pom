@@ -28,7 +28,6 @@ class UsersController < ApplicationController
       @tasks = current_user.tasks.order(created_at: :DESC).page params[:page]
     end
   end
-
   def new
     @user = User.new
   end
@@ -42,7 +41,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
   def edit
   end
   def update
@@ -53,11 +51,15 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-
   def destroy
     @user.destroy
     flash[:danger] = t('controller.user.destroy_success')
     redirect_to tasks_path
+  end
+
+  ######## MENTOR CONTROLLER #######
+  def mentor
+    @tasks = Task.all.page params[:page]
   end
 
   private

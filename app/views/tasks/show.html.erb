@@ -6,7 +6,8 @@
               <div class="btn-toolbar mb-2 mb-md-0">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
-                      <a class="nav-link active" aria-current="page" href="/tasks">
+                      <% if current_user.mentor?  %>
+                      <a class="nav-link active" aria-current="page" href="/mentor/<%= current_user.id %>">
                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                               stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
@@ -15,6 +16,17 @@
                           </svg>
                           All Projects
                       </a>
+                      <% else %>
+                      <a class="nav-link active" aria-current="page" href="/users/<%= current_user.id %>">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round" class="feather feather-home" aria-hidden="true">
+                              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                          </svg>
+                          All Projects
+                      </a>
+                      <% end  %>
                     </div>
                   </div>
                 </div>
@@ -25,23 +37,53 @@
           <p> deadline : <%=@task.deadline%></p>
           <p> Statut : <%=@task.statut%></p>
           <p> Priority : <%=@task.priority%></p>
-
           <hr>
-          <% if @steps.present? %>
-            <% @steps.each do |step| %>
-            <p>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                          stroke-linejoin="round" class="feather feather-file" aria-hidden="true">
-                          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                          <polyline points="13 2 13 9 20 9"></polyline>
-              </svg>
-              <%= link_to "#{step.name}", step %>
-            </p>
-            <% end %>
+          <table class="table text-light">
+            <thead>
+              <tr>
+                <th colspan="3">#</th>
+                <th scope="col">Sources</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @task.sources.all.each do |source|%>
+              <tr>
+                <th scope="row"><%= source.id %></th>
+                <td><%= source.title%></td>
+                <td>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
+                  view
+                </button>
+                </td>
+                <td><%=link_to "supprimer ", my_route2_path(source_id: source.id), method: :delete %></td>
+              </tr>
+              <!-- Modal for sources show -->
+              <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content bg-dark text-light">
+                    <%= render partial:'tasks/source_show',locals: {source:source}%>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal -->
+              <% end %>
+            </tbody>
+          </table>
+          <%if !current_user.mentor? %>
+            <%= link_to "modifier", edit_task_path(@task)  %>
+            <br>
+            <%=link_to "supprimer la tache", @task, method: :delete %>
           <% end %>
-          <button type="button" name="button"><%=link_to "modifier la tache", edit_task_path(@task) %></button>
-          <button type="button" name="button"><a href="#"><%=link_to "supprimer la tache", @task, method: :delete %></button>
+          <!-- button for add sources  -->
+          <!-- Large modal -->
+          <button type="button" class="btn btn-dark" data-toggle="modal" data-target=".bd-example-modal-lg">Ajouter une ressource</button>
 
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content bg-dark">
+                <%= render partial:'tasks/sources'%>
+              </div>
+            </div>
+          </div>
         </div>
   </section>

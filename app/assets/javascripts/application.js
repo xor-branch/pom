@@ -10,17 +10,13 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require popper
 //= require includes/task
 //= require rails-ujs
-//= require popper
 //= require activestorage
 //= require turbolinks
 //= require jquery/dist/jquery.js
-//= require bootstrap/dist/js/bootstrap.min
+//= require bootstrap/dist/js/bootstrap
 //= require_tree .
 
-
-$(document).ready(function() {
-    $(".nav-link").on("click", function(){
-    });
-});
+$('.modal-content').css('background-color', 'red');
