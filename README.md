@@ -59,3 +59,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 ```
+### if missing secret_key_base
+```
+rails secret
+EDITOR=vi rails credentials:edit --environment production
+copy results from 2 to 3 as secret_key_base: secret_here, and then wq!
+```
